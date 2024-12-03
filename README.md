@@ -11,6 +11,6 @@ I have been working on kuberenetes from last 3 years, but never thought of givin
 - Running of Workloads
 - Scheduling of the Workloads
 - Services and Networking
-- Storage ( PV, PVC and SC )
-- RBAC ( cluster roles, role bindings and service account)
+- Storage (PV, PVC and SC)
+- RBAC (cluster roles, role bindings and service account)
 - Troubleshooting

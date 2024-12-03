@@ -1,0 +1,33 @@
+# We created a program which checks the health of pods and sends alerts when something is wrong.
+# for this we need to provide the access to our workload so that it can access all the pods.
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: access-pods
+  labels:
+    permissions: pod-level
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - pod
+    verb:
+      - list
+      - get
+      - watch
+
+---
+# creting role binding
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: pod-access-role-bind
+  namespace: test
+  labels:
+    permission: pod-level
+subjects:
+  - kind: user
+    name: sai
+
+    
