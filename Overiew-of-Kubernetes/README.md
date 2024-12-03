@@ -11,9 +11,11 @@ Worker nodes connects to control plane and runs the containers also knows as pod
 
 Kubeadm is the kubernetes administrative tool which runs on all nodes and manages the worker nodes to connect to control plane.
 - Below are kubeadm commands
+```
     - kubeadm init # to bootstrap a kubernetes control plane node
     - kubeadm join  # to connect a worker node to control plane node
     - kubeadm --help # to learn more commands
+```
 
 kubelet is the node agent one which runs on every node for running the pods on the worker nodes.
 
@@ -29,15 +31,13 @@ We are going to create a new kubernetes cluster with control plane and single wo
 - We are using Virtual Machines to create the kubernetes cluster, you can also use Virtual Machines available over Cloud environments like AWS, Azure, GCP and so on.
 - Using Ubuntu OS for setting up the cluster.
 - First step is to install the required packages to the OS.
-    - apt install kubeadm, kubelet, crio, 
+    - apt install kubeadm, kubelet, crio  
+        [kubeadm](https://dl.k8s.io/v1.31.3/bin/linux/amd64/kubeadm)  
+        [kubelet](https://dl.k8s.io/v1.31.3/bin/linux/amd64/kubelet)
 
 
-
-kubeadm link :- https://dl.k8s.io/v1.31.3/bin/linux/amd64/kubeadm
-kubelet link :- https://dl.k8s.io/v1.31.3/bin/linux/amd64/kubelet
-
-
-VERSION="v1.31.1" # check latest version in /releases page
-wget https://github.com/kubernetes-sigs/cri-tools/releases/download/$VERSION/crictl-$VERSION-linux-amd64.tar.gz
-sudo tar zxvf crictl-$VERSION-linux-amd64.tar.gz -C /usr/local/bin
-rm -f crictl-$VERSION-linux-amd64.tar.gz
+    -   Use below command to setup crio
+        ```VERSION="v1.31.1" # check latest version in /releases page
+        wget https://github.com/kubernetes-sigs/cri-tools/releases/download/$VERSION/crictl-$VERSION-linux-amd64.tar.gz
+        sudo tar zxvf crictl-$VERSION-linux-amd64.tar.gz -C /usr/local/bin
+        rm -f crictl-$VERSION-linux-amd64.tar.gz```
