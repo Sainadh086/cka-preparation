@@ -6,9 +6,9 @@ I have been working on kuberenetes from last 3 years, but never thought of givin
 ## Contents
 
 - [Overview of Kubernetes](./Overiew-of-Kubernetes/)
-- Setting up Kubernetes Cluster
+- [Setting up Kubernetes Cluster](./Overiew-of-Kubernetes/manifests/)
 - Cluster Networking
-- Running of Workloads
+- [Running of Workloads](./Workloads/)
 - Scheduling of the Workloads
 - Services and Networking
 - Storage (PV, PVC and SC)
