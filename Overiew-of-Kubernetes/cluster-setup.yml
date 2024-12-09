@@ -2,8 +2,15 @@
 cluster:
   - Lets first setup one master and one worker, later we can add multiple worker nodes
 
+Note:
+  - I am using below config
+  - os: Ubuntu
+  - container engine: crio
+  - kubernetes version: 1.31.3
+
 
 crio install steps:
+  - VERSION=1.31.3
   - wget https://github.com/kubernetes-sigs/cri-tools/releases/download/$VERSION/crictl-$VERSION-linux-amd64.tar.gz
   - sudo tar zxvf crictl-$VERSION-linux-amd64.tar.gz -C /usr/local/bin
   - rm -f crictl-$VERSION-linux-amd64.tar.gz
