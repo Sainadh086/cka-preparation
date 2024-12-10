@@ -33,5 +33,11 @@ kubectl config set-context <context-name> \
 kubectl config use-context <context-name>
 ```
 
+Or you can simple use kubeadm cli to generate the certs
+
+```
+kubeadm kubeconfig user --client-name <username>
+```
+
 
 
