@@ -1,0 +1,69 @@
+# Task to deploy nginx image with deployment, insert a custom html page from configmap
+
+# creating configmap with html page
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-html
+data:
+  index.html: |
+    <h1> My World </h1>
+    <br> <br>
+    <h2> Welcome to custom nginx page, deployed through k8s</h2>
+  
+  50x.html: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>Error</title>
+    <style>
+    html { color-scheme: light dark; }
+    body { width: 35em; margin: 0 auto;
+    font-family: Tahoma, Verdana, Arial, sans-serif; }
+    </style>
+    </head>
+    <body>
+    <h1>An error occurred.</h1>
+    <p>Sorry, the page you are looking for is currently unavailable.<br/>
+    Please try again later.</p>
+    <p>If you are the system administrator of this resource then you should check
+    the error log for details.</p>
+    <p><em>Faithfully yours, nginx.</em></p>
+    </body>
+    </html>
+
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-app
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      volumes:
+      - name: index-html
+        configMap:
+          name: nginx-html
+      containers:
+      - name: nginx
+        image: "nginx:perl"
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: index-html
+          mountPath: /usr/share/nginx/html/
+
+
