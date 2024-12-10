@@ -37,20 +37,21 @@ kubelet:
   - sudo systemctl enable --now kubelet
 
 kubeadm:
-  - starting the kubeadm
+  - starting the kubeadm control plane
   - kubeadm init --pod-network-cidr=10.240.0.0/16 --ignore-preflight-errors=NumCPU --ignore-preflight-errors=Mem
-  - you will get a kubeadm join command over here, copy it and keep it another file.
+  - you will get a kubeadm join command over here, copy it and keep it another file, this command needs to be run on worker nodes
   - example: kubeadm join 10.0.0.183:6443 --token 1nplvi.1yu4obsm5lniyrmc --discovery-token-ca-cert-hash sha256:e0d806ccc968d5cedc6d986e76dce8e03c51da6374242fd2f1b6c20ec7b4b5e0
-  - We can use the join command to join our worker nodes
+  - We can use the join command to join our worker nodes, so that kubelet can communicate with control plane.
 
 
 deploy-overlay-network:
   - download flannel manifest
   - curl -O https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
-  - update your network cidr in net-conf.json in above file and apply
+  - update your network cidr in net-conf in above file and apply
   - kubectl create -f kube-flannel.yml
 
-
+generate users:
+  - kubeadm can generate user config for connecting to kubernetes.
 
 Nodes-ips:
   master: 10.0.0.183
