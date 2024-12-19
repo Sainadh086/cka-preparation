@@ -4,22 +4,24 @@ metadata:
   name: frontend-policy
   namespace: nw-policy
 spec:
-  # namespaceSelector:
-  #   matchLabels:
-  #       app: nginx
-  podSelector:
+  podSelector: # selecting the pods for applying network policy
     matchLabels:
       app: frontend
   policyTypes:
     - Ingress
-  
   ingress:
     - from:
-        - namespaceSelector:
+        - namespaceSelector: # selecting the namespace to allow traffic
             matchLabels:
               name: workloads
-      ports:
-          - port: 80
-            protocol: TCP
+          podSelector: # allowing the pods to communicate to the above pods.
+            matchLabels:
+              app: nginx
+      # ports:
+      #     - port: 80
+      #       protocol: TCP
   
 
+# namespaceSelector:
+  #   matchLabels:
+  #       app: nginx
