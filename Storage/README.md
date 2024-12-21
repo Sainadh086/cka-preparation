@@ -30,4 +30,4 @@ Reclaim Policy: When a PV is released (i.e., the PVC is deleted), Kubernetes use
 
 #### Task
 
-Task is to attach a PV to a pod running nginx, PV should use the local storage of the node at the path `/mnt/nginx-data/` to the pod path `/usr/share/nginx/html/` 
+Task is to attach a PV to a pod running nginx, PV should use the local storage of the node at the path `/mnt/nginx-data/` to the pod path `/usr/share/nginx/html/`

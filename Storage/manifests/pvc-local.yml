@@ -4,10 +4,10 @@ metadata:
   name: local-pvc-claim
   namespace: st
 spec:
-  storageClassName: local-storage
+  storageClassName: local-storage # it is refering for the pv
   resources:
     requests:
-      storage: 1Gi
+      storage: 1Gi # storage size
   volumeMode: Filesystem
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteOnce # mode of read and write for storage
