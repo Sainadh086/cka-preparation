@@ -1,0 +1,15 @@
+# this is the example for AWS EBS volume provisioner
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ebs-gp3
+  labels:
+    storage: ebs
+    type: gp3
+provisioner: ebs.csi.eks.awsamazon.com # vendor addreess
+volumeBindingMode: WaitForFirstConsumer
+reclaimPolicy: Retain # default value is Delete
+allowVolumeExpansion: true # it will help to increase the ebs volume automatically by changing the pvc size
+parameters:
+  type: gp3 # type of ebs volume
+  encrypted: "true"
