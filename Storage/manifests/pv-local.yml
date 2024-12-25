@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: local-storage
+spec:
+  capacity:
+    storage: 1Gi # storage
+  volumeMode: Filesystem # volume type
+  accessModes:
+    - ReadWriteOnce # mode of read and write for storage
+  persistentVolumeReclaimPolicy: Retain # policy after pvc got deleted
+  storageClassName: local-storage # storage class name for reference to pvc
+  local:
+    path: /mnt/nginx-data/ # in your local create the path
+  nodeAffinity: # selecting the node for attaching the pod
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+            - minikube

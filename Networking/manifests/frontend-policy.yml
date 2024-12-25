@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: frontend-policy
+  namespace: nw-policy
+spec:
+  podSelector: # selecting the pods for applying network policy
+    matchLabels:
+      app: frontend
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector: # selecting the namespace to allow traffic
+            matchLabels:
+              name: workloads
+          podSelector: # allowing the pods to communicate to the above pods.
+            matchLabels:
+              app: nginx
+      # ports:
+      #     - port: 80
+      #       protocol: TCP
+  
+
+# namespaceSelector:
+  #   matchLabels:
+  #       app: nginx
