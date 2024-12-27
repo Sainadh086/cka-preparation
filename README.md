@@ -10,7 +10,7 @@ I have been working on kuberenetes from last 3 years, but never thought of givin
 - Cluster Networking
 - [Running of Workloads](./Workloads/)
 - Scheduling of the Workloads
-- Services and Networking
-- Storage (PV, PVC and SC)
+- [Services and Networking](./Networking/)
+- [Storage](./Storage/)
 - [RBAC](./RBAC/)
 - Troubleshooting
